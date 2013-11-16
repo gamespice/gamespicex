@@ -16,7 +16,7 @@ namespace gamespice {
 class GameSpice: public cocos2d::CCObject {
 public:
 
-	const std::string API_ROOT = "SET API ROOT HERE";
+	const std::string API_ROOT = "http://10.0.2.2:9292";
 	const std::string API_VERSION = "v1";
 
 	static GameSpice* getInstance();
