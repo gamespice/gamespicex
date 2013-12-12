@@ -1,4 +1,5 @@
 #include "GameSpice.h"
+#include "JSON.h"
 
 namespace gamespice {
 
@@ -101,6 +102,13 @@ std::string GameSpice::getUserId() {
 void GameSpice::onGetFund(CCHttpClient* sender, CCHttpResponse* response) {
 	auto fund = Fund::fromJSON(getJSONResponse(response));
 	this->getFundCallback(fund);
+}
+
+void GameSpice::addScore(std::string leaderboardId, int score) {
+	JSON json;
+	json.addString("score", score);
+	std::string url = "/games/" + getGameId() + "/leaderboards/" + leaderboardId + "/scores";
+	APIClient::getInstance()->post(url, json.toString());
 }
 
 JSON GameSpice::getJSONResponse(CCHttpResponse* response) {

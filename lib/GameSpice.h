@@ -8,6 +8,7 @@
 #include "Models/User.h"
 #include "APIClient.h"
 #include "Models/Leaderboard.h"
+#include "Models/Fund.h"
 
 using namespace cocos2d::extension;
 USING_NS_CC;
@@ -30,6 +31,7 @@ public:
 	void addUser(User user);
 	void addFunds(Fund fund);
 	void getFund(std::function<void(Fund)> callback);
+	void addScore(std::string leaderboardId, int score);
 
 	bool noRegisteredUser();
 
@@ -47,14 +49,12 @@ private:
 
 	bool isEmptyValue(const std::string key);
 
-	std::string getGameId();
-	std::string getUserId();
+	std::string getGameId();std::string getUserId();
 
 	JSON getJSONResponse(CCHttpResponse* response);
 
-	std::function<void(User)> getUserCallback;
-	std::function<void(Leaderboard)> getLeaderboardCallback;
-	std::function<void(Fund)> getFundCallback;
+	std::function<void(User)> getUserCallback;std::function<void(Leaderboard)> getLeaderboardCallback;std::function<
+			void(Fund)> getFundCallback;
 
 };
 
