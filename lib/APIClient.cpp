@@ -23,9 +23,28 @@ void APIClient::setRequestHeaders(CCHttpRequest* request) {
 	request->setHeaders( { versionHeader, "Content-type: application/json" });
 }
 
+CCHttpRequest* APIClient::prepareRequestWithData(const char* url,
+		CCHttpRequest::HttpRequestType requestType, std::string data) {
+	auto request = prepareRequest(url, requestType);
+	request->setRequestData(data.c_str(), strlen(data.c_str()));
+	return request;
+}
+
+void APIClient::sendRequestAndRelease(CCHttpRequest* request) {
+	CCHttpClient::getInstance()->send(request);
+	request->release();
+}
+
+void APIClient::post(const char* url, std::string data, CCObject* target,
+		SEL_HttpResponse handler) {
+	auto request = prepareRequestWithData(url, CCHttpRequest::kHttpPost, data);
+	request->setResponseCallback(target, handler);
+	sendRequestAndRelease(request);
+}
+
 CCHttpRequest* APIClient::prepareRequest(const char* url,
 		CCHttpRequest::HttpRequestType requestType) {
-	CCHttpRequest* request = new CCHttpRequest();
+	auto request = new CCHttpRequest();
 	setRequestHeaders(request);
 	setRequestUrl(url, request);
 	request->setRequestType(requestType);
@@ -33,10 +52,8 @@ CCHttpRequest* APIClient::prepareRequest(const char* url,
 }
 
 void APIClient::post(const char* url, std::string data) {
-	CCHttpRequest* request = prepareRequest(url, CCHttpRequest::kHttpPost);
-	request->setRequestData(data.c_str(), strlen(data.c_str()));
-	CCHttpClient::getInstance()->send(request);
-	request->release();
+	sendRequestAndRelease(
+			prepareRequestWithData(url, CCHttpRequest::kHttpPost, data));
 }
 
 void APIClient::setRequestUrl(const char* url, CCHttpRequest* request) {
@@ -47,10 +64,9 @@ void APIClient::setRequestUrl(const char* url, CCHttpRequest* request) {
 
 void APIClient::get(const char* url, CCObject* target,
 		SEL_HttpResponse handler) {
-	CCHttpRequest* request = prepareRequest(url, CCHttpRequest::kHttpGet);
+	auto request = prepareRequest(url, CCHttpRequest::kHttpGet);
 	request->setResponseCallback(target, handler);
-	CCHttpClient::getInstance()->send(request);
-	request->release();
+	sendRequestAndRelease(request);
 }
 
 APIClient::~APIClient() {

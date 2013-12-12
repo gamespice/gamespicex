@@ -8,6 +8,7 @@ LOCAL_MODULE_FILENAME := libgamespicex
 
 LOCAL_SRC_FILES := \
 lib/Models/User.cpp \
+lib/Models/Fund.cpp \
 lib/Models/Leaderboard.cpp \
 lib/JSON.cpp \
 lib/APIClient.cpp \

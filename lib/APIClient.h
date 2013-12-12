@@ -16,6 +16,8 @@ public:
 	void configure(const std::string apiRoot, std::string version);
 
 	void post(const char* url, std::string data);
+	void post(const char* url, std::string data, CCObject* target,
+			SEL_HttpResponse handler);
 	void get(const char* url, CCObject* target, SEL_HttpResponse handler);
 
 	virtual ~APIClient();
@@ -28,6 +30,9 @@ private:
 	void setRequestUrl(const char* url, CCHttpRequest* request);
 	CCHttpRequest* prepareRequest(const char* url,
 			CCHttpRequest::HttpRequestType requestType);
+	CCHttpRequest* prepareRequestWithData(const char* url,
+			CCHttpRequest::HttpRequestType requestType, std::string data);
+	void sendRequestAndRelease(CCHttpRequest* request);
 };
 
 } /* namespace gamespice */
