@@ -17,6 +17,10 @@ Add to LOCAL_WHOLE_STATIC_LIBRARIES
 
     gamespice_x_static
 
+So it might look like this
+    
+    LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocosdenshion_static cocos_extension_static gamespice_x_static
+
 Add to your ``AndroidManifest.xml``
 
     <uses-permission android:name="android.permission.INTERNET" />
