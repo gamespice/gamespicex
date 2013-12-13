@@ -1,6 +1,9 @@
 #ifndef FUND_H_
 #define FUND_H_
 
+#include <string>
+#include "../JSON.h"
+
 namespace gamespice {
 
 class Fund {
@@ -13,7 +16,7 @@ public:
 
 	std::string toJSON();
 
-	const std::string getAmount();
+	const int getAmount();
 	const std::string getId();
 
 private:

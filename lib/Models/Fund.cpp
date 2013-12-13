@@ -6,19 +6,18 @@ Fund::~Fund() {
 }
 
 Fund Fund::fromJSON(JSON json) {
-	Fund fund;
+	Fund fund(json.getInt("amount"));
 	fund.id = json.getString("id");
-	fund.amount = json.getInt("amount");
 	return fund;
 }
 
 std::string Fund::toJSON() {
 	JSON json;
-	json.addString("amount", getAmount());
+	json.addInt("amount", getAmount());
 	return json.toString();
 }
 
-const std::string Fund::getAmount() {
+const int Fund::getAmount() {
 	return amount;
 }
 
@@ -27,7 +26,7 @@ Fund::Fund(int amount) :
 }
 
 const std::string Fund::getId() {
-	return id_;
+	return id;
 }
 
 } /* namespace gamespice */

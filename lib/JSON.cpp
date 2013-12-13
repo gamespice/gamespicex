@@ -39,12 +39,25 @@ void JSON::addString(const char* key, const std::string& value) {
 }
 
 void JSON::addInt(const char* key, int value) {
-	jsonDic->setObject(CCInteger::create(value), key);
+	jsonDic->setObject(CCNumber::create(value), key);
 }
 
 std::string JSON::toString() {
 	auto converter = CCJSONConverter::sharedConverter();
 	return std::string(converter->strFrom(jsonDic));
+}
+
+std::vector<JSON> JSON::getArray(const char* key) {
+	std::vector<JSON> result;
+	auto array = (CCArray*) jsonDic->objectForKey(key);
+	CCObject* obj;
+	CCARRAY_FOREACH(array, obj) {
+		auto itemDict = (CCDictionary*) obj;
+		auto jsonItem = JSON(
+				CCJSONConverter::sharedConverter()->strFrom(itemDict));
+		result.push_back(jsonItem);
+	}
+	return result;
 }
 
 JSON::~JSON() {

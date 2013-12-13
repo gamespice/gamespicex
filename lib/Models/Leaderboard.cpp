@@ -2,27 +2,41 @@
 
 namespace gamespice {
 
-Leaderboard::Leaderboard(const std::string name) :
-		name_(name) {
+Leaderboard::Leaderboard(const std::vector<Score> scores) :
+		scores(scores) {
 }
 
 Leaderboard Leaderboard::fromJSON(JSON json) {
-	Leaderboard leaderboard(json.getString("name"));
-	leaderboard.id_ = json.getString("id");
+	auto scoresJSON = json.getArray("scores");
+	std::vector<Score> scores;
+	for (auto scoreJSON : scoresJSON) {
+		scores.push_back(Score::fromJSON(scoreJSON));
+	}
+	Leaderboard leaderboard(scores);
 	return leaderboard;
 }
 
-std::string Leaderboard::toJSON() {
-	JSON json;
-	json.addString("name", getName());
-	return json.toString();
-}
-
-const std::string Leaderboard::getName() {
-	return name_;
+const std::vector<Score> Leaderboard::getScores() {
+	return scores;
 }
 
 Leaderboard::~Leaderboard() {
+}
+
+Score::Score(int score) :
+		score(score) {
+}
+
+Score Score::fromJSON(JSON json) {
+	Score score(json.getInt("score"));
+	return score;
+}
+
+const int Score::getScore() {
+	return score;
+}
+
+Score::~Score() {
 }
 
 } /* namespace gamespice */

@@ -22,6 +22,8 @@ public:
 
 	int getInt(const char* key);
 
+	std::vector<JSON> getArray(const char* key);
+
 	void addString(const char* key, const std::string& value);
 	void addInt(const char* key, int value);
 

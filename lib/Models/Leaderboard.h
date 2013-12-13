@@ -3,25 +3,37 @@
 
 #include <string>
 #include "../JSON.h"
+#include <vector>
 
 namespace gamespice {
+
+class Score {
+public:
+	Score(int score);
+	static Score fromJSON(JSON json);
+
+	const int getScore();
+
+	virtual ~Score();
+
+private:
+	int score;
+};
 
 class Leaderboard {
 public:
 
-	Leaderboard(const std::string name);
+	Leaderboard(const std::vector<Score> scores);
 
 	static Leaderboard fromJSON(JSON json);
 
-	std::string toJSON();
-
-	const std::string getName();
+	const std::vector<Score> getScores();
 
 	virtual ~Leaderboard();
 
 private:
 
-	std::string id_;std::string name_;
+	std::string id_;std::vector<Score> scores;
 };
 
 } /* namespace gamespice */

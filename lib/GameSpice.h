@@ -29,7 +29,7 @@ public:
 
 	void getUser(const std::string userId, std::function<void(User)> callback);
 	void addUser(User user);
-	void addFunds(Fund fund);
+	void addFund(Fund fund);
 	void getFund(std::function<void(Fund)> callback);
 	void addScore(std::string leaderboardId, int score);
 

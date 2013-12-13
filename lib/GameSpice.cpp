@@ -33,8 +33,8 @@ GameSpice* GameSpice::getInstance() {
 void GameSpice::getLeaderboard(std::string leaderboardId,
 		std::function<void(Leaderboard)> callback) {
 	this->getLeaderboardCallback = callback;
-	std::string url = "/games/" + getGameId() + "/leaderboards/"
-			+ leaderboardId;
+	std::string url = "/games/" + getGameId() + "/leaderboards/" + leaderboardId
+			+ "/scores/" + getUserId();
 	APIClient::getInstance()->get(url.c_str(), this,
 			httpresponse_selector(GameSpice::onGetLeaderboard));
 		}
@@ -69,11 +69,10 @@ void GameSpice::onGetLeaderboard(CCHttpClient* sender,
 	this->getLeaderboardCallback(leaderboard);
 }
 
-void GameSpice::addFunds(Fund fund) {
+void GameSpice::addFund(Fund fund) {
 	std::string url = "/games/" + getGameId() + "/funds/" + getUserId();
-	APIClient::getInstance()->post(url, fund.toJSON(), this,
-			httpresponse_selector(GameSpice::onAddFunds));
-		}
+	APIClient::getInstance()->post(url.c_str(), fund.toJSON());
+}
 
 void GameSpice::getFund(std::function<void(Fund)> callback) {
 	this->getFundCallback = callback;
@@ -106,9 +105,10 @@ void GameSpice::onGetFund(CCHttpClient* sender, CCHttpResponse* response) {
 
 void GameSpice::addScore(std::string leaderboardId, int score) {
 	JSON json;
-	json.addString("score", score);
-	std::string url = "/games/" + getGameId() + "/leaderboards/" + leaderboardId + "/scores";
-	APIClient::getInstance()->post(url, json.toString());
+	json.addInt("score", score);
+	std::string url = "/games/" + getGameId() + "/leaderboards/" + leaderboardId
+			+ "/scores/" + getUserId();
+	APIClient::getInstance()->post(url.c_str(), json.toString());
 }
 
 JSON GameSpice::getJSONResponse(CCHttpResponse* response) {
