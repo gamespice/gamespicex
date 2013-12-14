@@ -38,6 +38,8 @@ public:
 	void getLeaderboard(std::string leaderboardId,
 			std::function<void(Leaderboard)> callback);
 
+	std::string getUserId();
+
 	virtual ~GameSpice();
 private:
 
@@ -49,7 +51,7 @@ private:
 
 	bool isEmptyValue(const std::string key);
 
-	std::string getGameId();std::string getUserId();
+	std::string getGameId();
 
 	JSON getJSONResponse(CCHttpResponse* response);
 

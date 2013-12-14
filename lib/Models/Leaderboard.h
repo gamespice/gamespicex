@@ -13,11 +13,16 @@ public:
 	static Score fromJSON(JSON json);
 
 	const int getScore();
+	const int getPlace();
+	const std::string getUsername();
+	const std::string getUserId();
+
 
 	virtual ~Score();
 
 private:
-	int score;
+	int score;std::string userId;
+	int place;std::string username;
 };
 
 class Leaderboard {
