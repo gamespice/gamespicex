@@ -30,6 +30,11 @@ CCHttpRequest* APIClient::prepareRequestWithData(const char* url,
 	return request;
 }
 
+void APIClient::put(const char* url, std::string data) {
+	sendRequestAndRelease(
+			prepareRequestWithData(url, CCHttpRequest::kHttpPut, data));
+}
+
 void APIClient::sendRequestAndRelease(CCHttpRequest* request) {
 	CCHttpClient::getInstance()->send(request);
 	request->release();

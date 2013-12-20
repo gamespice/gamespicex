@@ -13,6 +13,7 @@ Fund Fund::fromJSON(JSON json) {
 
 std::string Fund::toJSON() {
 	JSON json;
+	json.addString("id", getId());
 	json.addInt("amount", getAmount());
 	return json.toString();
 }

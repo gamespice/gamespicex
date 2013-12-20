@@ -111,6 +111,11 @@ void GameSpice::addScore(std::string leaderboardId, int score) {
 	APIClient::getInstance()->post(url.c_str(), json.toString());
 }
 
+void GameSpice::order(Order order) {
+	std::string url = "/games/" + getGameId() + "/items/" + getUserId() + "/order";
+	APIClient::getInstance()->put(url.c_str(), order.toJSON());
+}
+
 JSON GameSpice::getJSONResponse(CCHttpResponse* response) {
 	return JSON::load(response->getResponseData());
 

@@ -9,6 +9,8 @@
 #include "APIClient.h"
 #include "Models/Leaderboard.h"
 #include "Models/Fund.h"
+#include "Models/InventoryItem.h"
+#include "Models/Order.h"
 
 using namespace cocos2d::extension;
 USING_NS_CC;
@@ -32,13 +34,11 @@ public:
 	void addFund(Fund fund);
 	void getFund(std::function<void(Fund)> callback);
 	void addScore(std::string leaderboardId, int score);
-
-	bool noRegisteredUser();
-
+	void order(Order order);
 	void getLeaderboard(std::string leaderboardId,
 			std::function<void(Leaderboard)> callback);
 
-	std::string getUserId();
+	bool noRegisteredUser();
 
 	virtual ~GameSpice();
 private:
@@ -50,6 +50,8 @@ private:
 	void onGetLeaderboard(CCHttpClient *sender, CCHttpResponse *response);
 
 	bool isEmptyValue(const std::string key);
+
+	std::string getUserId();
 
 	std::string getGameId();
 

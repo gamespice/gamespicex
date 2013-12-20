@@ -18,6 +18,7 @@ public:
 	void post(const char* url, std::string data);
 	void post(const char* url, std::string data, CCObject* target,
 			SEL_HttpResponse handler);
+	void put(const char* url, std::string data);
 	void get(const char* url, CCObject* target, SEL_HttpResponse handler);
 
 	virtual ~APIClient();

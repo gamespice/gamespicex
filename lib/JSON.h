@@ -26,6 +26,7 @@ public:
 
 	void addString(const char* key, const std::string& value);
 	void addInt(const char* key, int value);
+	void addArray(const char* key, CCArray* array);
 
 	std::string toString();
 

@@ -42,6 +42,10 @@ void JSON::addInt(const char* key, int value) {
 	jsonDic->setObject(CCNumber::create(value), key);
 }
 
+void JSON::addArray(const char* key, CCArray* array) {
+	jsonDic->setObject(array, key);
+}
+
 std::string JSON::toString() {
 	auto converter = CCJSONConverter::sharedConverter();
 	return std::string(converter->strFrom(jsonDic));
