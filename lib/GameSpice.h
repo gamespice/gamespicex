@@ -11,6 +11,7 @@
 #include "Models/Fund.h"
 #include "Models/InventoryItem.h"
 #include "Models/Order.h"
+#include "Models/Inventory.h"
 
 using namespace cocos2d::extension;
 USING_NS_CC;
@@ -35,6 +36,8 @@ public:
 	void getFund(std::function<void(Fund)> callback);
 	void addScore(std::string leaderboardId, int score);
 	void order(Order order);
+	void getInventory(std::function<void(Inventory)> callback);
+	void updateInventory(Inventory inventory);
 	void getLeaderboard(std::string leaderboardId,
 			std::function<void(Leaderboard)> callback);
 
@@ -46,6 +49,7 @@ private:
 	void onGetUser(CCHttpClient *sender, CCHttpResponse *response);
 	void onAddUser(CCHttpClient *sender, CCHttpResponse *response);
 	void onGetFund(CCHttpClient *sender, CCHttpResponse *response);
+	void onGetInventory(CCHttpClient* sender, CCHttpResponse *response);
 
 	void onGetLeaderboard(CCHttpClient *sender, CCHttpResponse *response);
 
@@ -58,7 +62,7 @@ private:
 	JSON getJSONResponse(CCHttpResponse* response);
 
 	std::function<void(User)> getUserCallback;std::function<void(Leaderboard)> getLeaderboardCallback;std::function<
-			void(Fund)> getFundCallback;
+			void(Fund)> getFundCallback; std::function<void(Inventory)> getInventoryCallback;
 
 };
 

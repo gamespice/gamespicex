@@ -1,7 +1,6 @@
 #ifndef ORDER_H_
 #define ORDER_H_
 
-#include "cocos2d.h"
 #include "../JSON.h"
 #include "InventoryItem.h"
 #include <vector>

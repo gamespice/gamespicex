@@ -112,8 +112,26 @@ void GameSpice::addScore(std::string leaderboardId, int score) {
 }
 
 void GameSpice::order(Order order) {
-	std::string url = "/games/" + getGameId() + "/items/" + getUserId() + "/order";
+	std::string url = "/games/" + getGameId() + "/items/" + getUserId()
+			+ "/order";
 	APIClient::getInstance()->put(url.c_str(), order.toJSON());
+}
+
+void GameSpice::getInventory(std::function<void(Inventory)> callback) {
+	std::string url = "/games/" + getGameId() + "/items/" + getUserId();
+	this->getInventoryCallback = callback;
+	APIClient::getInstance()->get(url.c_str(), this,
+			httpresponse_selector(GameSpice::onGetInventory));
+		}
+
+void GameSpice::updateInventory(Inventory inventory) {
+	std::string url = "/games/" + getGameId() + "/items/" + getUserId();
+	APIClient::getInstance()->put(url.c_str(), inventory.toJSON());
+}
+
+void GameSpice::onGetInventory(CCHttpClient* sender, CCHttpResponse* response) {
+	auto inventory = Inventory::fromJSON(getJSONResponse(response));
+	this->getInventoryCallback(inventory);
 }
 
 JSON GameSpice::getJSONResponse(CCHttpResponse* response) {
