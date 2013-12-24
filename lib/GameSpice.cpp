@@ -16,11 +16,6 @@ void GameSpice::getUser(std::string userId,
 GameSpice::~GameSpice() {
 }
 
-void GameSpice::addUser(User user) {
-	APIClient::getInstance()->post("/users", user.toJSON(), this,
-			httpresponse_selector(GameSpice::onAddUser));
-		}
-
 GameSpice* GameSpice::getInstance() {
 	if (!gameSpiceInstance) {
 		gameSpiceInstance = new GameSpice();
@@ -29,6 +24,12 @@ GameSpice* GameSpice::getInstance() {
 	}
 	return gameSpiceInstance;
 }
+
+void GameSpice::addUser(User user, std::function<void(User)> callback) {
+	this->addUserCallback = callback;
+	APIClient::getInstance()->post("/users", user.toJSON(), this,
+			httpresponse_selector(GameSpice::onAddUser));
+		}
 
 void GameSpice::getLeaderboard(std::string leaderboardId,
 		std::function<void(Leaderboard)> callback) {
@@ -47,18 +48,19 @@ void GameSpice::onGetUser(CCHttpClient* sender, CCHttpResponse* response) {
 void GameSpice::onAddUser(CCHttpClient* sender, CCHttpResponse* response) {
 	auto user = User::fromJSON(getJSONResponse(response));
 	auto db = CCUserDefault::sharedUserDefault();
-	db->setStringForKey(USER_KEY.c_str(), user.getId());
+	db->setStringForKey(USER_KEY, user.getId());
 	db->flush();
+	this->addUserCallback(user);
 }
 
 bool GameSpice::noRegisteredUser() {
-	return isEmptyValue(USER_KEY);
+	return isEmptyValue(std::string(USER_KEY));
 }
 
 void GameSpice::init(const std::string gameId) {
-	if (isEmptyValue(GAME_KEY)) {
+	if (isEmptyValue(std::string(GAME_KEY))) {
 		auto db = CCUserDefault::sharedUserDefault();
-		db->setStringForKey(GAME_KEY.c_str(), gameId);
+		db->setStringForKey(GAME_KEY, gameId);
 		db->flush();
 	}
 }
@@ -69,9 +71,17 @@ void GameSpice::onGetLeaderboard(CCHttpClient* sender,
 	this->getLeaderboardCallback(leaderboard);
 }
 
-void GameSpice::addFund(Fund fund) {
+void GameSpice::addFund(Fund fund, std::function<void(Fund)> callback) {
+	this->addFundCallback = callback;
+
 	std::string url = "/games/" + getGameId() + "/funds/" + getUserId();
-	APIClient::getInstance()->post(url.c_str(), fund.toJSON());
+	APIClient::getInstance()->post(url.c_str(), fund.toJSON(), this,
+			httpresponse_selector(GameSpice::onAddFund));
+		}
+
+void GameSpice::onAddFund(CCHttpClient* sender, CCHttpResponse* response) {
+	auto fund = Fund::fromJSON(getJSONResponse(response));
+	this->addFundCallback(fund);
 }
 
 void GameSpice::getFund(std::function<void(Fund)> callback) {
@@ -90,12 +100,12 @@ bool GameSpice::isEmptyValue(const std::string key) {
 
 std::string GameSpice::getGameId() {
 	auto db = CCUserDefault::sharedUserDefault();
-	return db->getStringForKey(GAME_KEY.c_str());
+	return db->getStringForKey(GAME_KEY, std::string(""));
 }
 
 std::string GameSpice::getUserId() {
 	auto db = CCUserDefault::sharedUserDefault();
-	return db->getStringForKey(USER_KEY.c_str());
+	return db->getStringForKey(USER_KEY, std::string(""));
 }
 
 void GameSpice::onGetFund(CCHttpClient* sender, CCHttpResponse* response) {
@@ -110,6 +120,15 @@ void GameSpice::addScore(std::string leaderboardId, int score) {
 			+ "/scores/" + getUserId();
 	APIClient::getInstance()->post(url.c_str(), json.toString());
 }
+
+void GameSpice::getHighScore(std::string leaderboardId,
+		std::function<void(HighScore)> callback) {
+	this->getHighScoreCallback = callback;
+	std::string url = "/games/" + getGameId() + "/leaderboards/" + leaderboardId
+			+ "/highscores/" + getUserId();
+	APIClient::getInstance()->get(url.c_str(), this,
+			httpresponse_selector(GameSpice::onGetHighScore));
+		}
 
 void GameSpice::order(Order order) {
 	std::string url = "/games/" + getGameId() + "/items/" + getUserId()
@@ -132,6 +151,14 @@ void GameSpice::updateInventory(Inventory inventory) {
 void GameSpice::onGetInventory(CCHttpClient* sender, CCHttpResponse* response) {
 	auto inventory = Inventory::fromJSON(getJSONResponse(response));
 	this->getInventoryCallback(inventory);
+}
+
+bool GameSpice::isCurrentPlayer(std::string userId) {
+	return userId == getUserId();
+}
+
+void GameSpice::onGetHighScore(CCHttpClient* sender, CCHttpResponse* response) {
+	this->getHighScoreCallback(HighScore::fromJSON(getJSONResponse(response)));
 }
 
 JSON GameSpice::getJSONResponse(CCHttpResponse* response) {

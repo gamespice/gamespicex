@@ -54,4 +54,19 @@ const std::string Score::getUserId() {
 Score::~Score() {
 }
 
+HighScore::HighScore(int score) :
+		score(score) {
+}
+
+HighScore HighScore::fromJSON(JSON json) {
+	return HighScore(json.getInt("score"));
+}
+
+const int HighScore::getScore() {
+	return score;
+}
+
+HighScore::~HighScore() {
+}
+
 } /* namespace gamespice */

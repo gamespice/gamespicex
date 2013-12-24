@@ -15,6 +15,8 @@ public:
 
 	std::string toJSON();
 
+	CCDictionary* toDict();
+
 	const std::string getIdentifier() const;
 
 	const std::string getName() const;

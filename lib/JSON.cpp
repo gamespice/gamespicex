@@ -19,9 +19,13 @@ JSON::JSON(char* data) {
 	jsonDic->retain();
 }
 
-JSON::JSON() {
-	jsonDic = CCDictionary::create();
+JSON::JSON(CCDictionary* dict) {
+	jsonDic = dict;
 	jsonDic->retain();
+}
+
+JSON::JSON(): JSON(CCDictionary::create()) {
+
 }
 
 std::string JSON::getString(const char* key) {

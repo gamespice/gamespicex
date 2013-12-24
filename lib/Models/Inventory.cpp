@@ -22,7 +22,7 @@ std::string Inventory::toJSON() {
 	JSON json;
 	CCArray* itemsArray = CCArray::create();
 	for (auto& itemPair : items) {
-		itemsArray->addObject(CCString::create(itemPair.second.toJSON()));
+		itemsArray->addObject(itemPair.second.toDict());
 	}
 	json.addArray("items", itemsArray);
 	return json.toString();

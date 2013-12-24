@@ -7,6 +7,19 @@
 
 namespace gamespice {
 
+class HighScore {
+public:
+	HighScore(int score);
+	static HighScore fromJSON(JSON json);
+
+	const int getScore();
+
+	virtual ~HighScore();
+
+private:
+	int score;
+};
+
 class Score {
 public:
 	Score(int score);

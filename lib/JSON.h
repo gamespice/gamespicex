@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "json/CCJSONData.h"
 
 #include "cocos2d.h"
 
@@ -13,6 +14,7 @@ namespace gamespice {
 class JSON {
 public:
 
+	JSON(CCDictionary* dict);
 	JSON(char* data);
 	JSON();
 

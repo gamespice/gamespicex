@@ -25,10 +25,14 @@ InventoryItem InventoryItem::fromJSON(JSON json) {
 }
 
 std::string InventoryItem::toJSON() {
-	JSON json;
-	json.addString("identifier", getIdentifier());
-	json.addInt("quantity", getQuantity());
-	return json.toString();
+	return JSON(toDict()).toString();
+}
+
+CCDictionary* InventoryItem::toDict() {
+	auto dic = CCDictionary::create();
+	dic->setObject(CCString::create(getIdentifier()), "identifier");
+	dic->setObject(CCNumber::create(getQuantity()), "quantity");
+	return dic;
 }
 
 InventoryItem::~InventoryItem() {

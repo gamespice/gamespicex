@@ -10,7 +10,7 @@ std::string Order::toJSON() {
 	JSON json;
 	CCArray* itemsArray = CCArray::create();
 	for (auto item : items) {
-		itemsArray->addObject(CCString::create(item.toJSON()));
+		itemsArray->addObject(item.toDict());
 	}
 	json.addArray("items", itemsArray);
 	return json.toString();
