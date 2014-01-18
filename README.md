@@ -28,6 +28,8 @@ Clone this repo into your cocos2d-x root
 
     git clone git@github.com:gamespice/gamespicex.git gamespice
 
+Import Android project to Eclipse from ``lib/platform/android/java`` and make your project depend on it
+
 Open your ``proj.android/jni/Android.mk`` file add this line at the end
 
     $(call import-module,gamespice) 
