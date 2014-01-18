@@ -1,4 +1,4 @@
-GameSpiceX - gamification service for your games and apps
+GameSpiceX
 ==========
 
 Game services client for cocos2d-x with GameSpice sweetness
