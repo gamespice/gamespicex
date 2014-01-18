@@ -2,24 +2,27 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := gamespice_x_static
+LOCAL_MODULE := gamespice_static
 
-LOCAL_MODULE_FILENAME := libgamespicex
+LOCAL_MODULE_FILENAME := libgamespice
 
-LOCAL_SRC_FILES := \
-lib/Models/User.cpp \
-lib/Models/Fund.cpp \
-lib/Models/InventoryItem.cpp \
-lib/Models/Inventory.cpp \
-lib/Models/Order.cpp \
-lib/Models/Leaderboard.cpp \
+LOCAL_SRC_FILES := lib/models/User.cpp \
+lib/models/Fund.cpp \
+lib/models/InventoryItem.cpp \
+lib/models/Inventory.cpp \
+lib/models/Order.cpp \
+lib/models/Leaderboard.cpp \
 lib/JSON.cpp \
 lib/APIClient.cpp \
 lib/GameSpice.cpp \
 lib/json/cJSON/cJSON.c \
-lib/json/CCJSONConverter.cpp
+lib/json/CCJSONConverter.cpp \
+lib/facebook/FriendsInvitedEvent.cpp \
+lib/facebook/FriendsInvitedListener.cpp \
+lib/facebook/FacebookCallback.cpp \
+lib/facebook/FacebookCallback_wrap.cpp \
 
-LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocos_extension_static
+LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocos_network_static
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/lib
 
@@ -27,6 +30,4 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/lib
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,cocos2dx)
-$(call import-module,cocos2dx/platform/third_party/android/prebuilt/libcurl)
-$(call import-module,extensions)
+$(call import-module,network)

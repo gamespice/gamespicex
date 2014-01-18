@@ -1,0 +1,3 @@
+[submodule "vendor/android-simple-facebook"]
+	path = vendor/android-simple-facebook
+	url = https://github.com/sromku/android-simple-facebook.git

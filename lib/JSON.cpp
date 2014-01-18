@@ -30,7 +30,7 @@ JSON::JSON(): JSON(CCDictionary::create()) {
 
 std::string JSON::getString(const char* key) {
 	auto string = (CCString*) jsonDic->objectForKey(key);
-	return string->m_sString;
+	return string->_string;
 }
 
 int JSON::getInt(const char* key) {

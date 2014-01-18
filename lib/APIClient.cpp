@@ -1,7 +1,6 @@
 #include "APIClient.h"
 
 #include <string>
-
 namespace gamespice {
 
 static APIClient* clientInstance;
@@ -18,13 +17,13 @@ void APIClient::configure(const std::string apiRoot, std::string version) {
 	this->version = version;
 }
 
-void APIClient::setRequestHeaders(CCHttpRequest* request) {
+void APIClient::setRequestHeaders(HttpRequest* request) {
 	std::string versionHeader = "Accept-Version=" + version;
 	request->setHeaders( { versionHeader, "Content-type: application/json" });
 }
 
-CCHttpRequest* APIClient::prepareRequestWithData(const char* url,
-		CCHttpRequest::HttpRequestType requestType, std::string data) {
+HttpRequest* APIClient::prepareRequestWithData(const char* url,
+		HttpRequest::Type requestType, std::string data) {
 	auto request = prepareRequest(url, requestType);
 	request->setRequestData(data.c_str(), strlen(data.c_str()));
 	return request;
@@ -32,24 +31,26 @@ CCHttpRequest* APIClient::prepareRequestWithData(const char* url,
 
 void APIClient::put(const char* url, std::string data) {
 	sendRequestAndRelease(
-			prepareRequestWithData(url, CCHttpRequest::kHttpPut, data));
+			prepareRequestWithData(url, HttpRequest::Type::PUT,
+					data));
 }
 
-void APIClient::sendRequestAndRelease(CCHttpRequest* request) {
-	CCHttpClient::getInstance()->send(request);
+void APIClient::sendRequestAndRelease(HttpRequest* request) {
+	HttpClient::getInstance()->send(request);
 	request->release();
 }
 
-void APIClient::post(const char* url, std::string data, CCObject* target,
+void APIClient::post(const char* url, std::string data, Object* target,
 		SEL_HttpResponse handler) {
-	auto request = prepareRequestWithData(url, CCHttpRequest::kHttpPost, data);
+	auto request = prepareRequestWithData(url,
+			HttpRequest::Type::POST, data);
 	request->setResponseCallback(target, handler);
 	sendRequestAndRelease(request);
 }
 
-CCHttpRequest* APIClient::prepareRequest(const char* url,
-		CCHttpRequest::HttpRequestType requestType) {
-	auto request = new CCHttpRequest();
+HttpRequest* APIClient::prepareRequest(const char* url,
+		HttpRequest::Type requestType) {
+	auto request = new HttpRequest();
 	setRequestHeaders(request);
 	setRequestUrl(url, request);
 	request->setRequestType(requestType);
@@ -58,24 +59,24 @@ CCHttpRequest* APIClient::prepareRequest(const char* url,
 
 void APIClient::post(const char* url, std::string data) {
 	sendRequestAndRelease(
-			prepareRequestWithData(url, CCHttpRequest::kHttpPost, data));
+			prepareRequestWithData(url,
+					HttpRequest::Type::POST, data));
 }
 
-void APIClient::setRequestUrl(const char* url, CCHttpRequest* request) {
+void APIClient::setRequestUrl(const char* url, HttpRequest* request) {
 	std::string requestUrl = apiRoot;
 	requestUrl += url;
 	request->setUrl(requestUrl.c_str());
 }
 
-void APIClient::get(const char* url, CCObject* target,
+void APIClient::get(const char* url, Object* target,
 		SEL_HttpResponse handler) {
-	auto request = prepareRequest(url, CCHttpRequest::kHttpGet);
+	auto request = prepareRequest(url, HttpRequest::Type::GET);
 	request->setResponseCallback(target, handler);
 	sendRequestAndRelease(request);
 }
 
 APIClient::~APIClient() {
-// TODO Auto-generated destructor stub
 }
 
 } /* namespace gamespice */

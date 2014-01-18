@@ -3,17 +3,16 @@
 
 #include <string>
 
-#include "cocos-ext.h"
 #include "cocos2d.h"
-#include "Models/User.h"
+#include "models/User.h"
 #include "APIClient.h"
-#include "Models/Leaderboard.h"
-#include "Models/Fund.h"
-#include "Models/InventoryItem.h"
-#include "Models/Order.h"
-#include "Models/Inventory.h"
+#include "models/Leaderboard.h"
+#include "models/Fund.h"
+#include "models/InventoryItem.h"
+#include "models/Order.h"
+#include "models/Inventory.h"
+#include "facebook/Facebook.h"
 
-using namespace cocos2d::extension;
 USING_NS_CC;
 namespace gamespice {
 
@@ -36,12 +35,13 @@ public:
 	void addFund(Fund fund, std::function<void(Fund)> callback);
 	void getFund(std::function<void(Fund)> callback);
 	void addScore(std::string leaderboardId, int score);
-	void getHighScore(std::string leaderboardId, std::function<void(HighScore)> callback);
+	void getHighScore(std::string leaderboardId,
+			std::function<void(HighScore)> callback);
 	void order(Order order);
 	void getInventory(std::function<void(Inventory)> callback);
 	void updateInventory(Inventory inventory);
 	void getLeaderboard(std::string leaderboardId,
-			std::function<void(Leaderboard)> callback);
+	std::function<void(Leaderboard)> callback);
 
 	bool isCurrentPlayer(std::string userId);
 
@@ -50,14 +50,14 @@ public:
 	virtual ~GameSpice();
 private:
 
-	void onGetUser(CCHttpClient *sender, CCHttpResponse *response);
-	void onAddUser(CCHttpClient *sender, CCHttpResponse *response);
-	void onAddFund(CCHttpClient *sender, CCHttpResponse *response);
-	void onGetFund(CCHttpClient *sender, CCHttpResponse *response);
-	void onGetInventory(CCHttpClient* sender, CCHttpResponse *response);
-	void onGetHighScore(CCHttpClient* sender, CCHttpResponse *response);
+	void onGetUser(HttpClient *sender, HttpResponse *response);
+	void onAddUser(HttpClient *sender, HttpResponse *response);
+	void onAddFund(HttpClient *sender, HttpResponse *response);
+	void onGetFund(HttpClient *sender, HttpResponse *response);
+	void onGetInventory(HttpClient* sender, HttpResponse *response);
+	void onGetHighScore(HttpClient* sender, HttpResponse *response);
 
-	void onGetLeaderboard(CCHttpClient *sender, CCHttpResponse *response);
+	void onGetLeaderboard(HttpClient *sender, HttpResponse *response);
 
 	bool isEmptyValue(const std::string key);
 
@@ -65,11 +65,12 @@ private:
 
 	std::string getGameId();
 
-	JSON getJSONResponse(CCHttpResponse* response);
+	JSON getJSONResponse(HttpResponse* response);
 
 	std::function<void(User)> getUserCallback;std::function<void(Leaderboard)> getLeaderboardCallback;std::function<
 			void(Fund)> getFundCallback;std::function<void(Inventory)> getInventoryCallback;std::function<
-			void(User)> addUserCallback; std::function<void(Fund)> addFundCallback; std::function<void(HighScore)> getHighScoreCallback;
+			void(User)> addUserCallback;std::function<void(Fund)> addFundCallback;std::function<
+			void(HighScore)> getHighScoreCallback;
 };
 
 } /* namespace gamespice */
