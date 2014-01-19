@@ -17,10 +17,14 @@ lib/APIClient.cpp \
 lib/GameSpice.cpp \
 lib/json/cJSON/cJSON.c \
 lib/json/CCJSONConverter.cpp \
+lib/facebook/Facebook.cpp \
 lib/facebook/FriendsInvitedEvent.cpp \
 lib/facebook/FriendsInvitedListener.cpp \
+lib/facebook/LoggedInEvent.cpp \
+lib/facebook/LoggedInListener.cpp \
 lib/facebook/FacebookCallback.cpp \
 lib/facebook/FacebookCallback_wrap.cpp \
+lib/platform/android/jni/JNICaller.cpp
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocos_network_static
 

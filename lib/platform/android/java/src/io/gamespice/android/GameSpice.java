@@ -31,6 +31,58 @@ public class GameSpice {
 		GameSpice.activity = activity;
 	}
 
+	public static void login() {
+		activity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				if (!facebook.isLogin()) {
+					facebook.login(new OnLoginListener() {
+
+						@Override
+						public void onFail(String reason) {
+
+						}
+
+						@Override
+						public void onException(Throwable throwable) {
+
+						}
+
+						@Override
+						public void onThinking() {
+
+						}
+
+						@Override
+						public void onNotAcceptingPermissions() {
+
+						}
+
+						@Override
+						public void onLogin() {
+							callOnLoginCallback();
+						}
+					});
+				} else {
+					callOnLoginCallback();
+				}
+			}
+
+		});
+	}
+
+	private static void callOnLoginCallback() {
+		Cocos2dxHelper.runOnGLThread(new Runnable() {
+
+			@Override
+			public void run() {
+				FacebookCallback callback = new FacebookCallback();
+				callback.onLogin();
+			}
+		});
+	}
+
 	public static void inviteFriends(final String message) {
 
 		activity.runOnUiThread(new Runnable() {
@@ -46,19 +98,16 @@ public class GameSpice {
 
 					@Override
 					public void onException(Throwable throwable) {
-						// TODO Auto-generated method stub
 
 					}
 
 					@Override
 					public void onThinking() {
-						// TODO Auto-generated method stub
 
 					}
 
 					@Override
 					public void onNotAcceptingPermissions() {
-						// TODO Auto-generated method stub
 
 					}
 

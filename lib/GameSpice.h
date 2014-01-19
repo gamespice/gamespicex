@@ -14,6 +14,7 @@
 #include "facebook/Facebook.h"
 
 USING_NS_CC;
+using namespace gamespice::facebook;
 namespace gamespice {
 
 class GameSpice: public cocos2d::CCObject {
@@ -36,7 +37,7 @@ public:
 	void getFund(std::function<void(Fund)> callback);
 	void addScore(std::string leaderboardId, int score);
 	void getHighScore(std::string leaderboardId,
-			std::function<void(HighScore)> callback);
+	std::function<void(HighScore)> callback);
 	void order(Order order);
 	void getInventory(std::function<void(Inventory)> callback);
 	void updateInventory(Inventory inventory);

@@ -3,6 +3,11 @@
 
 #include "FriendsInvitedEvent.h"
 #include "FriendsInvitedListener.h"
+#include "LoggedInEvent.h"
+#include "LoggedInListener.h"
+#include "../platform/android/jni/JNICaller.h"
+
+using namespace gamespice::android;
 
 namespace gamespice {
 namespace facebook {
@@ -10,6 +15,9 @@ namespace facebook {
 class Facebook {
 public:
 	Facebook();
+
+	void static login();
+
 	virtual ~Facebook();
 };
 

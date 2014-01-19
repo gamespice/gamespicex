@@ -4,13 +4,15 @@ namespace gamespice {
 namespace facebook {
 
 Facebook::Facebook() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Facebook::~Facebook() {
-	// TODO Auto-generated destructor stub
+}
+
+void Facebook::login() {
+	JNICaller::callStaticVoidMethod("login");
 }
 
 } /* namespace facebook */
 } /* namespace gamespice */
+
