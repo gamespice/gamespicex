@@ -23,5 +23,7 @@ public class gamespice_staticJNI {
   public final static native long new_FacebookCallback();
   public final static native void FacebookCallback_onLogin(long jarg1, FacebookCallback jarg1_);
   public final static native void FacebookCallback_onInviteFriendsComplete(long jarg1, FacebookCallback jarg1_, long jarg2, vectorS jarg2_, String jarg3);
+  public final static native void FacebookCallback_onShareComplete(long jarg1, FacebookCallback jarg1_, String jarg2);
+  public final static native void FacebookCallback_onBragComplete(long jarg1, FacebookCallback jarg1_, String jarg2);
   public final static native void delete_FacebookCallback(long jarg1);
 }

@@ -474,6 +474,46 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookC
 }
 
 
+SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookCallback_1onShareComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  FacebookCallback *arg1 = (FacebookCallback *) 0 ;
+  std::string arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(FacebookCallback **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  (arg1)->onShareComplete(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookCallback_1onBragComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  FacebookCallback *arg1 = (FacebookCallback *) 0 ;
+  std::string arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(FacebookCallback **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  (arg1)->onBragComplete(arg2);
+}
+
+
 SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_delete_1FacebookCallback(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   FacebookCallback *arg1 = (FacebookCallback *) 0 ;
   

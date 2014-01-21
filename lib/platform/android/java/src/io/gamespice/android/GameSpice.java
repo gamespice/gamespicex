@@ -10,6 +10,8 @@ import android.content.Intent;
 import com.sromku.simple.fb.SimpleFacebook;
 import com.sromku.simple.fb.SimpleFacebook.OnInviteListener;
 import com.sromku.simple.fb.SimpleFacebook.OnLoginListener;
+import com.sromku.simple.fb.SimpleFacebook.OnPublishListener;
+import com.sromku.simple.fb.entities.Feed;
 
 public class GameSpice {
 
@@ -157,6 +159,77 @@ public class GameSpice {
 			}
 		});
 
+	}
+
+	public static void share(final String name) {
+
+		activity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				Feed feed = new Feed.Builder().setName(name)
+						.setMessage("I did it").setDescription("Test test")
+						.setCaption("Some caption")
+						.setLink("http://example.com").build();
+				facebook.publish(feed, new OnPublishListener() {
+
+					@Override
+					public void onFail(String reason) {
+					}
+
+					@Override
+					public void onException(Throwable throwable) {
+					}
+
+					@Override
+					public void onThinking() {
+					}
+
+					@Override
+					public void onComplete(String postId) {
+						FacebookCallback callback = new FacebookCallback();
+						callback.onShareComplete(postId);
+					}
+				});
+			}
+		});
+	}
+
+	public static void brag(final String message) {
+		runOnUIThread(new Runnable() {
+
+			@Override
+			public void run() {
+				Feed feed = new Feed.Builder().setName("Name it")
+						.setMessage(message).setDescription("Test test")
+						.setCaption("Some caption")
+						.setLink("http://example.com").build();
+				facebook.publish(feed, new OnPublishListener() {
+
+					@Override
+					public void onFail(String reason) {
+					}
+
+					@Override
+					public void onException(Throwable throwable) {
+					}
+
+					@Override
+					public void onThinking() {
+					}
+
+					@Override
+					public void onComplete(String postId) {
+						FacebookCallback callback = new FacebookCallback();
+						callback.onBragComplete(postId);
+					}
+				});
+			}
+		});
+	}
+
+	private static void runOnUIThread(Runnable action) {
+		activity.runOnUiThread(action);
 	}
 
 }

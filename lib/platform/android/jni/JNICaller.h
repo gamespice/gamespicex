@@ -21,14 +21,15 @@ class JNICaller {
 public:
 	JNICaller();
 
-	void static callVoidMethodWithString(const char* name, const char* idName);
+	void static callStaticVoidMethodWithString(const char* name,
+			const char* idName);
+
+	void static callStaticVoidMethodWithStringAndInt(const char* name,
+			const char* idName, const int value);
 
 	void static callStaticVoidMethod(const char* name);
 
 	bool static callStaticBoolMethod(const char* name);
-
-	void static callVoidMethodWithStringAndInt(const char* name,
-			const char* idName, const int value);
 
 	virtual ~JNICaller();
 

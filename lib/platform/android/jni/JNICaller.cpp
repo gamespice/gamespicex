@@ -17,7 +17,7 @@ JNICaller::JNICaller() {
 
 }
 
-void JNICaller::callVoidMethodWithStringAndInt(const char* name,
+void JNICaller::callStaticVoidMethodWithStringAndInt(const char* name,
 		const char* idName, const int value) {
 	cocos2d::JniMethodInfo t;
 	if (cocos2d::JniHelper::getStaticMethodInfo(t,
@@ -53,7 +53,7 @@ void JNICaller::callStaticVoidMethod(const char* name) {
 	}
 }
 
-void JNICaller::callVoidMethodWithString(const char* name, const char* idName) {
+void JNICaller::callStaticVoidMethodWithString(const char* name, const char* idName) {
 	cocos2d::JniMethodInfo t;
 	if (cocos2d::JniHelper::getStaticMethodInfo(t,
 			JNICaller::GAME_SPICE_CLASS.c_str(), name,

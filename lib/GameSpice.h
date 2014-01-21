@@ -12,6 +12,7 @@
 #include "models/Order.h"
 #include "models/Inventory.h"
 #include "facebook/Facebook.h"
+#include "jansson.h"
 
 USING_NS_CC;
 using namespace gamespice::facebook;

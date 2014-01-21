@@ -47,4 +47,12 @@ public class FacebookCallback {
     gamespice_staticJNI.FacebookCallback_onInviteFriendsComplete(swigCPtr, this, vectorS.getCPtr(friends), friends, invitedFriends);
   }
 
+  public void onShareComplete(String postId) {
+    gamespice_staticJNI.FacebookCallback_onShareComplete(swigCPtr, this, postId);
+  }
+
+  public void onBragComplete(String postId) {
+    gamespice_staticJNI.FacebookCallback_onBragComplete(swigCPtr, this, postId);
+  }
+
 }
