@@ -13,12 +13,12 @@ void Facebook::login() {
 	JNICaller::callStaticVoidMethod("login");
 }
 
-void Facebook::share(std::string name) {
-	JNICaller::callStaticVoidMethodWithString("share", name.c_str());
+void Facebook::share(ShareDTO share) {
+	JNICaller::sendMessage(Message("share", share.toBundle()));
 }
 
-void Facebook::brag(std::string message) {
-	JNICaller::callStaticVoidMethodWithString("brag", message.c_str());
+void Facebook::brag(ShareDTO share) {
+	JNICaller::sendMessage(Message("brag", share.toBundle()));
 }
 
 } /* namespace facebook */

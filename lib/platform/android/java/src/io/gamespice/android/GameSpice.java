@@ -1,5 +1,7 @@
 package io.gamespice.android;
 
+import io.gamespice.android.dto.ShareDTO;
+
 import java.util.List;
 
 import org.cocos2dx.lib.Cocos2dxHelper;
@@ -31,6 +33,11 @@ public class GameSpice {
 	public void onResume(Activity activity) {
 		facebook = SimpleFacebook.getInstance(activity);
 		GameSpice.activity = activity;
+	}
+
+	public static void onReceive(String message) {
+		Message m = Message.load(message);
+		m.send();
 	}
 
 	public static void login() {
@@ -87,7 +94,7 @@ public class GameSpice {
 
 	public static void inviteFriends(final String message) {
 
-		activity.runOnUiThread(new Runnable() {
+		runOnUIThread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -161,16 +168,17 @@ public class GameSpice {
 
 	}
 
-	public static void share(final String name) {
+	public static void share(final ShareDTO share) {
 
-		activity.runOnUiThread(new Runnable() {
+		runOnUIThread(new Runnable() {
 
 			@Override
 			public void run() {
-				Feed feed = new Feed.Builder().setName(name)
-						.setMessage("I did it").setDescription("Test test")
-						.setCaption("Some caption")
-						.setLink("http://example.com").build();
+				Feed feed = new Feed.Builder().setName(share.getName())
+						.setMessage(share.getMessage())
+						.setDescription(share.getDescription())
+						.setCaption(share.getDescription())
+						.setLink(share.getLink()).build();
 				facebook.publish(feed, new OnPublishListener() {
 
 					@Override
@@ -195,37 +203,8 @@ public class GameSpice {
 		});
 	}
 
-	public static void brag(final String message) {
-		runOnUIThread(new Runnable() {
-
-			@Override
-			public void run() {
-				Feed feed = new Feed.Builder().setName("Name it")
-						.setMessage(message).setDescription("Test test")
-						.setCaption("Some caption")
-						.setLink("http://example.com").build();
-				facebook.publish(feed, new OnPublishListener() {
-
-					@Override
-					public void onFail(String reason) {
-					}
-
-					@Override
-					public void onException(Throwable throwable) {
-					}
-
-					@Override
-					public void onThinking() {
-					}
-
-					@Override
-					public void onComplete(String postId) {
-						FacebookCallback callback = new FacebookCallback();
-						callback.onBragComplete(postId);
-					}
-				});
-			}
-		});
+	public static void brag(final ShareDTO share) {
+		share(share);
 	}
 
 	private static void runOnUIThread(Runnable action) {

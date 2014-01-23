@@ -29,22 +29,24 @@ lib/facebook/LoggedInListener.cpp \
 lib/facebook/FacebookCallback.cpp \
 lib/facebook/FacebookCallback_wrap.cpp \
 lib/platform/android/jni/JNICaller.cpp \
-vendor/jansson/src/dump.c \
-vendor/jansson/src/error.c \
-vendor/jansson/src/hashtable.c \
-vendor/jansson/src/load.c \
-vendor/jansson/src/memory.c \
-vendor/jansson/src/pack_unpack.c \
-vendor/jansson/src/strbuffer.c \
-vendor/jansson/src/strconv.c \
-vendor/jansson/src/utf.c \
-vendor/jansson/src/value.c
+lib/platform/android/jni/Message.cpp \
+lib/platform/android/jni/Bundle.cpp \
+lib/platform/android/jni/dto/ShareDTO.cpp \
+lib/jansson/dump.c \
+lib/jansson/error.c \
+lib/jansson/hashtable.c \
+lib/jansson/load.c \
+lib/jansson/memory.c \
+lib/jansson/pack_unpack.c \
+lib/jansson/strbuffer.c \
+lib/jansson/strconv.c \
+lib/jansson/utf.c \
+lib/jansson/value.c
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocos_network_static
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/lib \
-$(LOCAL_PATH)/vendor/jansson/src \
-$(LOCAL_PATH)/vendor/jansson/android
+$(LOCAL_PATH)/lib/jansson \
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/lib
 

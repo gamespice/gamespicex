@@ -53,16 +53,21 @@ void JNICaller::callStaticVoidMethod(const char* name) {
 	}
 }
 
-void JNICaller::callStaticVoidMethodWithString(const char* name, const char* idName) {
+void JNICaller::callStaticVoidMethodWithString(const char* name,
+		const char* value) {
 	cocos2d::JniMethodInfo t;
 	if (cocos2d::JniHelper::getStaticMethodInfo(t,
 			JNICaller::GAME_SPICE_CLASS.c_str(), name,
 			"(Ljava/lang/String;)V")) {
-		jstring jIdName = t.env->NewStringUTF(idName);
+		jstring jIdName = t.env->NewStringUTF(value);
 		t.env->CallStaticVoidMethod(t.classID, t.methodID, jIdName);
 		t.env->DeleteLocalRef(t.classID);
 		t.env->DeleteLocalRef(jIdName);
 	}
+}
+
+void JNICaller::sendMessage(Message message) {
+	callStaticVoidMethodWithString("onReceive", message.toJSON().c_str());
 }
 
 JNICaller::~JNICaller() {

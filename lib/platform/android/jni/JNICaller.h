@@ -11,6 +11,7 @@
 #include <jni.h>
 #include "platform/android/jni/JniHelper.h"
 #include <string>
+#include "Message.h"
 
 USING_NS_CC;
 
@@ -30,6 +31,8 @@ public:
 	void static callStaticVoidMethod(const char* name);
 
 	bool static callStaticBoolMethod(const char* name);
+
+	void static sendMessage(Message message);
 
 	virtual ~JNICaller();
 

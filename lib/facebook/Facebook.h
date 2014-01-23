@@ -10,6 +10,7 @@
 #include "BragCompletedEvent.h"
 #include "BragCompletedListener.h"
 #include "../platform/android/jni/JNICaller.h"
+#include "../platform/android/jni/dto/ShareDTO.h"
 
 using namespace gamespice::android;
 
@@ -21,8 +22,8 @@ public:
 	Facebook();
 
 	void static login();
-	void static share(std::string name);
-	void static brag(std::string message);
+	void static share(ShareDTO share);
+	void static brag(ShareDTO share);
 
 	virtual ~Facebook();
 };
