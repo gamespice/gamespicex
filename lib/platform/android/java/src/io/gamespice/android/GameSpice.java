@@ -9,11 +9,15 @@ import org.cocos2dx.lib.Cocos2dxHelper;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.facebook.SessionDefaultAudience;
+import com.sromku.simple.fb.Permissions;
 import com.sromku.simple.fb.SimpleFacebook;
 import com.sromku.simple.fb.SimpleFacebook.OnInviteListener;
 import com.sromku.simple.fb.SimpleFacebook.OnLoginListener;
 import com.sromku.simple.fb.SimpleFacebook.OnPublishListener;
+import com.sromku.simple.fb.SimpleFacebookConfiguration;
 import com.sromku.simple.fb.entities.Feed;
+import com.sromku.simple.fb.utils.Logger;
 
 public class GameSpice {
 
@@ -23,6 +27,22 @@ public class GameSpice {
 	public GameSpice(Activity activity) {
 		GameSpice.activity = activity;
 		facebook = SimpleFacebook.getInstance(activity);
+	}
+
+	public static void configure(String appId, String appNamespace) {
+		Logger.DEBUG_WITH_STACKTRACE = true;
+
+		Permissions[] permissions = new Permissions[] { Permissions.BASIC_INFO,
+				Permissions.EMAIL, Permissions.USER_PHOTOS,
+				Permissions.USER_BIRTHDAY, Permissions.USER_LOCATION,
+				Permissions.PUBLISH_ACTION, Permissions.PUBLISH_STREAM };
+
+		SimpleFacebookConfiguration configuration = new SimpleFacebookConfiguration.Builder()
+				.setAppId(appId).setNamespace(appNamespace)
+				.setPermissions(permissions)
+				.setDefaultAudience(SessionDefaultAudience.EVERYONE).build();
+
+		SimpleFacebook.setConfiguration(configuration);
 	}
 
 	public void onActivityResult(Activity activity, int requestCode,

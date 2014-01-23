@@ -1,7 +1,7 @@
 GameSpiceX
 ==========
 
-Game services client for cocos2d-x with GameSpice sweetness
+Game services client for cocos2d-x with Game Spice sweetness
 
 # IMPORTANT
 
@@ -20,7 +20,10 @@ Currently GameSpiceX supports the following features in cocos2d-x 3.0
 
 ### Facebook integration
 
+* Login
 * Invite friends
+* Share
+* Brag
 
 ## How to install
 
@@ -45,3 +48,41 @@ So it might look like this
 Add to your ``AndroidManifest.xml``
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+## How to use
+
+#### Android/Java
+
+Create custom application and override the onCreate method.
+Include the facebook appId and appNamespace
+
+```Java
+@Override
+public void onCreate() {
+	super.onCreate();
+	GameSpice.configure(<APP ID>, <APP NAMESPACE>);
+}
+```
+
+Don't forget to include the app in the ``AndroidManifest.xml``
+
+#### Cocos2d/CPP
+
+Include the Game Spice header file in your scene
+
+```cpp
+#include "GameSpice.h"
+```
+
+GameSpiceX uses the new event system introduced in Cocos2D 3.0 so everything uses the ```EventDispatcher```
+
+How to login user via Facebook
+
+```cpp
+auto loggedInListener = LoggedInListener::create(
+	[=] (LoggedInEvent* event) {
+		CCLog("Logged in event");
+	});
+_eventDispatcher->addEventListenerWithFixedPriority(loggedInListener, 1);
+Facebook::login();
+```
