@@ -7,8 +7,10 @@
 
 #include "BragCompletedEvent.h"
 
+const std::string BragCompletedEvent::NAME = {"BragCompletedEvent"};
+
 BragCompletedEvent::BragCompletedEvent(std::string postId) :
-		postId(postId), EventCustom(std::string("BragCompleted")) {
+		postId(postId), EventCustom(BragCompletedEvent::NAME) {
 
 }
 

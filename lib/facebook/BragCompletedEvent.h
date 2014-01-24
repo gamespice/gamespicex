@@ -19,6 +19,8 @@ public:
 	virtual ~BragCompletedEvent();
 
 	std::string postId;
+
+	static const std::string NAME;
 };
 
 #endif /* BRAGCOMPLETEDEVENT_H_ */

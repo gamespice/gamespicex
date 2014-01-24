@@ -1,6 +1,9 @@
 package io.gamespice.android;
 
+import io.gamespice.android.bridge.Dispatcher;
 import io.gamespice.android.dto.ShareDTO;
+import io.gamespice.android.scaffold.FacebookCallback;
+import io.gamespice.android.scaffold.vectorS;
 
 import java.util.List;
 
@@ -14,7 +17,9 @@ import com.sromku.simple.fb.Permissions;
 import com.sromku.simple.fb.SimpleFacebook;
 import com.sromku.simple.fb.SimpleFacebook.OnInviteListener;
 import com.sromku.simple.fb.SimpleFacebook.OnLoginListener;
+import com.sromku.simple.fb.SimpleFacebook.OnPostScoreListener;
 import com.sromku.simple.fb.SimpleFacebook.OnPublishListener;
+import com.sromku.simple.fb.SimpleFacebook.OnUnlockAchievementListener;
 import com.sromku.simple.fb.SimpleFacebookConfiguration;
 import com.sromku.simple.fb.entities.Feed;
 import com.sromku.simple.fb.utils.Logger;
@@ -56,8 +61,7 @@ public class GameSpice {
 	}
 
 	public static void onReceive(String message) {
-		Message m = Message.load(message);
-		m.send();
+		Dispatcher.dispatch(message);
 	}
 
 	public static void login() {
@@ -227,8 +231,88 @@ public class GameSpice {
 		share(share);
 	}
 
+	public static void postScore(final int score) {
+		runOnUIThread(new Runnable() {
+
+			@Override
+			public void run() {
+				facebook.postScore(score, new OnPostScoreListener() {
+
+					@Override
+					public void onFail(String reason) {
+
+					}
+
+					@Override
+					public void onException(Throwable throwable) {
+
+					}
+
+					@Override
+					public void onThinking() {
+
+					}
+
+					@Override
+					public void onComplete() {
+						runOnGLThread(new Runnable() {
+
+							@Override
+							public void run() {
+								FacebookCallback callback = new FacebookCallback();
+								callback.onPostScoreComplete();
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+
+	public static void unlockAchievement(final String achievementUrl) {
+		runOnUIThread(new Runnable() {
+
+			@Override
+			public void run() {
+				facebook.unlockAchievements(achievementUrl,
+						new OnUnlockAchievementListener() {
+
+							@Override
+							public void onFail(String reason) {
+
+							}
+
+							@Override
+							public void onException(Throwable throwable) {
+
+							}
+
+							@Override
+							public void onThinking() {
+							}
+
+							@Override
+							public void onComplete() {
+								runOnGLThread(new Runnable() {
+
+									@Override
+									public void run() {
+										FacebookCallback callback = new FacebookCallback();
+										callback.onUnlockAchievementComplete();
+									}
+								});
+							}
+						});
+			}
+		});
+	}
+
 	private static void runOnUIThread(Runnable action) {
 		activity.runOnUiThread(action);
+	}
+
+	private static void runOnGLThread(Runnable action) {
+		Cocos2dxHelper.runOnGLThread(action);
 	}
 
 }

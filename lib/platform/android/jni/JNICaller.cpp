@@ -18,14 +18,14 @@ JNICaller::JNICaller() {
 }
 
 void JNICaller::callStaticVoidMethodWithStringAndInt(const char* name,
-		const char* idName, const int value) {
+		const char* strValue, const int intValue) {
 	cocos2d::JniMethodInfo t;
 	if (cocos2d::JniHelper::getStaticMethodInfo(t,
 			JNICaller::GAME_SPICE_CLASS.c_str(), name,
 			"(Ljava/lang/String;I)V")) {
-		jstring jIdName = t.env->NewStringUTF(idName);
+		jstring jIdName = t.env->NewStringUTF(strValue);
 		t.env->CallStaticVoidMethod(t.classID, t.methodID, jIdName,
-				(jint) value);
+				(jint) intValue);
 		t.env->DeleteLocalRef(t.classID);
 		t.env->DeleteLocalRef(jIdName);
 	}
@@ -66,6 +66,16 @@ void JNICaller::callStaticVoidMethodWithString(const char* name,
 	}
 }
 
+void JNICaller::callStaticVoidMethodWithInt(const char* name, int value) {
+
+	cocos2d::JniMethodInfo t;
+	if (cocos2d::JniHelper::getStaticMethodInfo(t,
+			JNICaller::GAME_SPICE_CLASS.c_str(), name, "(I)V")) {
+		t.env->CallStaticVoidMethod(t.classID, t.methodID, (jint) value);
+		t.env->DeleteLocalRef(t.classID);
+	}
+}
+
 void JNICaller::sendMessage(Message message) {
 	callStaticVoidMethodWithString("onReceive", message.toJSON().c_str());
 }
@@ -75,3 +85,4 @@ JNICaller::~JNICaller() {
 
 } /* namespace android */
 } /* namespace gamespice */
+

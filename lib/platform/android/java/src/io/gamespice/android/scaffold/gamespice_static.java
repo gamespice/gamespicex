@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package io.gamespice.android;
+package io.gamespice.android.scaffold;
 
 public class gamespice_static {
 }

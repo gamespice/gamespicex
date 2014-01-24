@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package io.gamespice.android;
+package io.gamespice.android.scaffold;
 
 public class FacebookCallback {
   private long swigCPtr;
@@ -53,6 +53,14 @@ public class FacebookCallback {
 
   public void onBragComplete(String postId) {
     gamespice_staticJNI.FacebookCallback_onBragComplete(swigCPtr, this, postId);
+  }
+
+  public void onPostScoreComplete() {
+    gamespice_staticJNI.FacebookCallback_onPostScoreComplete(swigCPtr, this);
+  }
+
+  public void onUnlockAchievementComplete() {
+    gamespice_staticJNI.FacebookCallback_onUnlockAchievementComplete(swigCPtr, this);
   }
 
 }

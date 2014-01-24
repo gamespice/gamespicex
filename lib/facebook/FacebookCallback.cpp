@@ -28,6 +28,14 @@ void FacebookCallback::onBragComplete(std::string postId) {
 	dispatch(BragCompletedEvent(postId));
 }
 
+void FacebookCallback::onPostScoreComplete() {
+	dispatch(PostScoreCompletedEvent());
+}
+
+void FacebookCallback::onUnlockAchievementComplete() {
+	dispatch(UnlockAchievementCompletedEvent());
+}
+
 FacebookCallback::~FacebookCallback() {
 }
 

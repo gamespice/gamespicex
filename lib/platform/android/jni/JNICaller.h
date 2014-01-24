@@ -23,10 +23,13 @@ public:
 	JNICaller();
 
 	void static callStaticVoidMethodWithString(const char* name,
-			const char* idName);
+			const char* value);
+
+	void static callStaticVoidMethodWithInt(const char* name,
+				int value);
 
 	void static callStaticVoidMethodWithStringAndInt(const char* name,
-			const char* idName, const int value);
+			const char* strValue, const int intValue);
 
 	void static callStaticVoidMethod(const char* name);
 

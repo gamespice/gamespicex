@@ -8,6 +8,8 @@
 #include "FriendsInvitedEvent.h"
 #include "ShareCompletedEvent.h"
 #include "BragCompletedEvent.h"
+#include "PostScoreCompletedEvent.h"
+#include "UnlockAchievementCompletedEvent.h"
 
 class FacebookCallback {
 public:
@@ -17,6 +19,8 @@ public:
 	std::string invitedFriends);
 	void onShareComplete(std::string postId);
 	void onBragComplete(std::string postId);
+	void onPostScoreComplete();
+	void onUnlockAchievementComplete();
 	virtual ~FacebookCallback();
 };
 

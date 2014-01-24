@@ -2,13 +2,11 @@
 #define FACEBOOK_H_
 
 #include "FriendsInvitedEvent.h"
-#include "FriendsInvitedListener.h"
 #include "ShareCompletedEvent.h"
-#include "ShareCompletedListener.h"
 #include "LoggedInEvent.h"
-#include "LoggedInListener.h"
 #include "BragCompletedEvent.h"
-#include "BragCompletedListener.h"
+#include "PostScoreCompletedEvent.h"
+#include "UnlockAchievementCompletedEvent.h"
 #include "../platform/android/jni/JNICaller.h"
 #include "../platform/android/jni/dto/ShareDTO.h"
 
@@ -24,6 +22,9 @@ public:
 	void static login();
 	void static share(ShareDTO share);
 	void static brag(ShareDTO share);
+	void static inviteFriends(std::string message);
+	void static postScore(int score);
+	void static unlockAchievement(std::string achievementUrl);
 
 	virtual ~Facebook();
 };

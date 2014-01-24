@@ -19,6 +19,8 @@ public:
 	virtual ~ShareCompletedEvent();
 
 	std::string postId;
+
+	static const std::string NAME;
 };
 
 #endif /* SHARECOMPLETEDEVENT_H_ */

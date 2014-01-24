@@ -242,7 +242,7 @@ SWIGINTERN void std_vector_Sl_std_string_Sg__set(std::vector< std::string > *sel
 extern "C" {
 #endif
 
-SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_new_1vectorS_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_new_1vectorS_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   std::vector< std::string > *result = 0 ;
   
@@ -254,7 +254,7 @@ SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_new_1vec
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_new_1vectorS_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_new_1vectorS_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   std::vector< std::string >::size_type arg1 ;
   std::vector< std::string > *result = 0 ;
@@ -268,7 +268,7 @@ SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_new_1vec
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   std::vector< std::string >::size_type result;
@@ -283,7 +283,7 @@ SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   std::vector< std::string >::size_type result;
@@ -298,7 +298,7 @@ SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   std::vector< std::string >::size_type arg2 ;
   
@@ -311,7 +311,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   bool result;
@@ -326,7 +326,7 @@ SWIGEXPORT jboolean JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vecto
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   
   (void)jenv;
@@ -337,7 +337,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   std::vector< std::string >::value_type *arg2 = 0 ;
   
@@ -358,7 +358,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jstring jresult = 0 ;
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   int arg2 ;
@@ -382,7 +382,7 @@ SWIGEXPORT jstring JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vector
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_vectorS_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3) {
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   int arg2 ;
   std::vector< std::string >::value_type *arg3 = 0 ;
@@ -412,7 +412,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_vectorS_1
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_delete_1vectorS(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_delete_1vectorS(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   
   (void)jenv;
@@ -422,7 +422,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_delete_1v
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_new_1FacebookCallback(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_new_1FacebookCallback(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   FacebookCallback *result = 0 ;
   
@@ -434,7 +434,7 @@ SWIGEXPORT jlong JNICALL Java_io_gamespice_android_gamespice_1staticJNI_new_1Fac
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookCallback_1onLogin(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_FacebookCallback_1onLogin(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   FacebookCallback *arg1 = (FacebookCallback *) 0 ;
   
   (void)jenv;
@@ -445,7 +445,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookC
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookCallback_1onInviteFriendsComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jstring jarg3) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_FacebookCallback_1onInviteFriendsComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jstring jarg3) {
   FacebookCallback *arg1 = (FacebookCallback *) 0 ;
   std::vector< std::string > arg2 ;
   std::string arg3 ;
@@ -474,7 +474,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookC
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookCallback_1onShareComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_FacebookCallback_1onShareComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   FacebookCallback *arg1 = (FacebookCallback *) 0 ;
   std::string arg2 ;
   
@@ -494,7 +494,7 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookC
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookCallback_1onBragComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_FacebookCallback_1onBragComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   FacebookCallback *arg1 = (FacebookCallback *) 0 ;
   std::string arg2 ;
   
@@ -514,7 +514,29 @@ SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_FacebookC
 }
 
 
-SWIGEXPORT void JNICALL Java_io_gamespice_android_gamespice_1staticJNI_delete_1FacebookCallback(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_FacebookCallback_1onPostScoreComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  FacebookCallback *arg1 = (FacebookCallback *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(FacebookCallback **)&jarg1; 
+  (arg1)->onPostScoreComplete();
+}
+
+
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_FacebookCallback_1onUnlockAchievementComplete(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  FacebookCallback *arg1 = (FacebookCallback *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(FacebookCallback **)&jarg1; 
+  (arg1)->onUnlockAchievementComplete();
+}
+
+
+SWIGEXPORT void JNICALL Java_io_gamespice_android_scaffold_gamespice_1staticJNI_delete_1FacebookCallback(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   FacebookCallback *arg1 = (FacebookCallback *) 0 ;
   
   (void)jenv;

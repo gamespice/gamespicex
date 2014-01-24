@@ -1,4 +1,7 @@
-package io.gamespice.android;
+package io.gamespice.android.bridge;
+
+import io.gamespice.android.GameSpice;
+import io.gamespice.android.GameSpiceException;
 
 import java.lang.reflect.Method;
 
@@ -25,7 +28,7 @@ public class Message {
 
 	}
 
-	void send() {
+	public void send() {
 		Method method = getMethod();
 		Class<?>[] parameters = method.getParameterTypes();
 		if (parameters.length != 1) {

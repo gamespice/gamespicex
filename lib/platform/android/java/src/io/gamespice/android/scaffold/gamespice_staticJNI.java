@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package io.gamespice.android;
+package io.gamespice.android.scaffold;
 
 public class gamespice_staticJNI {
   public final static native long new_vectorS__SWIG_0();
@@ -25,5 +25,7 @@ public class gamespice_staticJNI {
   public final static native void FacebookCallback_onInviteFriendsComplete(long jarg1, FacebookCallback jarg1_, long jarg2, vectorS jarg2_, String jarg3);
   public final static native void FacebookCallback_onShareComplete(long jarg1, FacebookCallback jarg1_, String jarg2);
   public final static native void FacebookCallback_onBragComplete(long jarg1, FacebookCallback jarg1_, String jarg2);
+  public final static native void FacebookCallback_onPostScoreComplete(long jarg1, FacebookCallback jarg1_);
+  public final static native void FacebookCallback_onUnlockAchievementComplete(long jarg1, FacebookCallback jarg1_);
   public final static native void delete_FacebookCallback(long jarg1);
 }

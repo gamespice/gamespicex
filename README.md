@@ -24,6 +24,8 @@ Currently GameSpiceX supports the following features in cocos2d-x 3.0
 * Invite friends
 * Share
 * Brag
+* Post score
+* Unlock achievement
 
 ## How to install
 
@@ -66,7 +68,7 @@ public void onCreate() {
 
 Don't forget to include the app in the ``AndroidManifest.xml``
 
-#### Cocos2d/CPP
+#### Cocos2d/C++
 
 Include the Game Spice header file in your scene
 
@@ -79,8 +81,9 @@ GameSpiceX uses the new event system introduced in Cocos2D 3.0 so everything use
 How to login user via Facebook
 
 ```cpp
-auto loggedInListener = LoggedInListener::create(
-	[=] (LoggedInEvent* event) {
+auto loggedInListener = EventListenerCustom::create(
+	[=] (EventCustom* e) {
+		auto event = (LoggedInEvent) e;
 		CCLog("Logged in event");
 	});
 _eventDispatcher->addEventListenerWithFixedPriority(loggedInListener, 1);

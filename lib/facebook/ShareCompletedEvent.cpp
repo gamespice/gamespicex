@@ -7,8 +7,10 @@
 
 #include "ShareCompletedEvent.h"
 
+const std::string ShareCompletedEvent::NAME = { "ShareCompletedEvent" };
+
 ShareCompletedEvent::ShareCompletedEvent(std::string postId) :
-		postId(postId), EventCustom(std::string("ShareCompleted")) {
+		postId(postId), EventCustom(ShareCompletedEvent::NAME) {
 
 }
 

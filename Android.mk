@@ -19,13 +19,11 @@ lib/json/cJSON/cJSON.c \
 lib/json/CCJSONConverter.cpp \
 lib/facebook/Facebook.cpp \
 lib/facebook/ShareCompletedEvent.cpp \
-lib/facebook/ShareCompletedListener.cpp \
 lib/facebook/BragCompletedEvent.cpp \
-lib/facebook/BragCompletedListener.cpp \
 lib/facebook/FriendsInvitedEvent.cpp \
-lib/facebook/FriendsInvitedListener.cpp \
 lib/facebook/LoggedInEvent.cpp \
-lib/facebook/LoggedInListener.cpp \
+lib/facebook/PostScoreCompletedEvent.cpp \
+lib/facebook/UnlockAchievementCompletedEvent.cpp \
 lib/facebook/FacebookCallback.cpp \
 lib/facebook/FacebookCallback_wrap.cpp \
 lib/platform/android/jni/JNICaller.cpp \

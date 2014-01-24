@@ -7,8 +7,10 @@
 
 #include "LoggedInEvent.h"
 
+const std::string LoggedInEvent::NAME = { "LoggedInEvent" };
+
 LoggedInEvent::LoggedInEvent() :
-		EventCustom(std::string("LoggedIn")) {
+		EventCustom(LoggedInEvent::NAME) {
 
 }
 
